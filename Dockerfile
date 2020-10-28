@@ -1,16 +1,16 @@
 ####
 #### argument for Windows version must be set early
 ####
-ARG WIN_VER
+#ARG WIN_VER
 
 ####
 #### Download and prepare PostgreSQL for Windows
 ####
-FROM mcr.microsoft.com/windows/servercore:${WIN_VER} as prepare
+FROM mcr.microsoft.com/windows/servercore:1809 as prepare
 
 ### Set the variables for EnterpriseDB
-ARG EDB_VER
-ENV EDB_VER $EDB_VER
+#ARG EDB_VER
+ENV EDB_VER 9.6.19-1
 ENV EDB_REPO https://get.enterprisedb.com/postgresql
 
 ##### Use PowerShell for the installation
@@ -75,7 +75,7 @@ RUN $URL3 = $('http://download.osgeo.org/postgis/windows/pg12/postgis-bundle-pg1
 ####
 #### PostgreSQL on Windows Nano Server
 ####
-FROM mcr.microsoft.com/windows/nanoserver:${WIN_VER}
+FROM mcr.microsoft.com/windows/nanoserver:1809
 
 RUN mkdir "C:\\docker-entrypoint-initdb.d"
 
